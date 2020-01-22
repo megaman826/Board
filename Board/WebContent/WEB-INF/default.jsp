@@ -10,10 +10,6 @@
 <title>Home</title>
 </head>
 <body>
-홈 화면 출력됨<br/>
-<c:if test="${sessionID != null }">
-	${sessionID } 로그인 중<br />
-	<a href="logout.do"><button>로그아웃</button></a>
-</c:if>
+홈 화면 출력됨
 </body>
 </html>

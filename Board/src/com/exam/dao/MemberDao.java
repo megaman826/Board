@@ -83,5 +83,30 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	public int login(String id, String pw) {
+		con = this.getConnection();
+		StringBuffer query = new StringBuffer();
+		query.append("SELECT pw").append(" FROM member").append(" WHERE ID = ?");
+		try {
+			pstmt = con.prepareStatement(query.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				if(rs.getString("pw").equals(pw)) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.close(con, pstmt, rs);
+		}
+		return -1;
+	}
 
 }
