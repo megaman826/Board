@@ -8,6 +8,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import com.main.system.HttpError;
 import com.main.system.Session;
 
@@ -54,7 +56,8 @@ public class AuthCenter {
 		if(authKey == null) {
 			System.out.println("## sessionCookie가 존재하지 않습니다.");
 			
-			authKey = "cookieAuth";
+			authKey = RandomStringUtils.randomAscii(10);
+			System.out.println(authKey);
 			
 			Cookie sessionCookie = new Cookie(sessionKey, authKey);
 			sessionCookie.setMaxAge(10); // 10초
