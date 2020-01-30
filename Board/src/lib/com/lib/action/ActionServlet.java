@@ -50,7 +50,7 @@ public class ActionServlet extends HttpServlet {
 		RequestProcessor rp = requestProcessorMap.get(path);
 		if(rp == null) {
 			return;
-		}
+		}		
 		
 		Session session = null;
 		Pair<HttpError, Session> sessionProc = AuthCenter.checkSession(req, resp);
@@ -58,6 +58,7 @@ public class ActionServlet extends HttpServlet {
 			return;
 		
 		session = sessionProc.getValue();
+		System.out.println(session.getId() + "/" + session.getAuthKey());
 		
 		rp.process();
 	}
